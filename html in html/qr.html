@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo QR sau khi click</title>
+
+    <!-- QRCode library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+    <style>
+        body {
+            background: #1e1e1e;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box {
+            background: #2a2a2a;
+            padding: 20px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,.6);
+        }
+
+        button {
+            padding: 10px 18px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            background: #ffd700;
+            font-weight: bold;
+        }
+
+        #qrcode {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>🎯 Generate QR</h2>
+    <button onclick="createQR()">Click tạo QR</button>
+    <div id="qrcode"></div>
+</div>
+
+<script>
+    function createQR() {
+        const qrBox = document.getElementById("qrcode");
+        qrBox.innerHTML = "";
+
+        const data = "Clicking RPG - " + Date.now();
+
+        new QRCode(qrBox, {
+            text: data,
+            width: 200,
+            height: 200,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
+</script>
+
+</body>
+</html>

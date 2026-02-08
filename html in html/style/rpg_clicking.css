@@ -1,0 +1,914 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Georgia", serif;
+}
+
+/* ================= BODY & ROOT ================= */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #1b1b1b;
+}
+
+/* ================= MAIN CONTAINER ================= */
+.container {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #1b1b1b, #111);
+}
+
+/* ================= SIDE PANELS ================= */
+.click-rpg {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.click-rpg-sp {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 90%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* LEFT PANEL */
+.left-panel {
+    background-size: cover;
+}
+
+/* RIGHT PANEL */
+.right-panel {
+    background: #2b2b2b;
+}
+
+/* ===================================================
+   POWER CHANGE BAR
+=================================================== */
+.power-change{
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    padding: 8px 10px;
+
+    background: linear-gradient(145deg, #2a2a2a, #161616);
+    border: 2px solid gold;
+    border-radius: 18px;
+
+    box-shadow:
+        inset 0 0 10px rgba(255, 215, 0, 0.25),
+        0 6px 15px rgba(0,0,0,0.7);
+}
+
+
+/* ===================================================
+   POWER CHANGE BUTTON
+=================================================== */
+.power-change > button{
+    flex: 1;
+    height: 100%;
+
+    border-radius: 14px;
+    border: 2px solid gold;
+
+    background: linear-gradient(145deg, #3a2b1d, #1b1209);
+    color: gold;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow:
+        inset 0 0 8px rgba(255, 215, 0, 0.3),
+        0 4px 10px rgba(0,0,0,0.8);
+
+    transition: all 0.25s ease;
+
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+
+/* ================= HOVER ================= */
+.power-change > button:hover{
+    background: linear-gradient(145deg, gold, orange);
+    color: #1b1b1b;
+
+    transform: scale(1.08);
+
+    box-shadow:
+        inset 0 0 12px rgba(255,255,255,0.5),
+        0 8px 18px rgba(255, 215, 0, 0.7);
+}
+
+
+/* ================= ACTIVE (CLICK) ================= */
+.power-change > button:active{
+    transform: scale(0.95);
+    box-shadow:
+        inset 0 0 12px rgba(0,0,0,0.6);
+}
+
+
+/* ================= SELECTED MODE ================= */
+.power-change > button.active{
+    background: linear-gradient(145deg, #ff3c00, #b30000);
+    border-color: #ffb3b3;
+    color: #fff;
+
+    box-shadow:
+        0 0 15px rgba(255, 60, 0, 0.9),
+        inset 0 0 10px rgba(255,255,255,0.3);
+}
+
+
+
+
+
+
+
+/* ================= MENU BUTTONS ================= */
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-sp {
+    height: 60px;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    background: #3a2b1d;
+    color: white;
+    border-radius: 12px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-sp:hover {
+    background: #5c3b1f;
+    transform: scale(1.05);
+}
+
+/* ================= STORE ================= */
+.support-button {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* ================= CENTER CLICK AREA ================= */
+.place-to-click {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #3a3a3a, #1b1b1b);
+}
+
+/* ================= SCORE ================= */
+.score {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 28px;
+    color: gold;
+    text-shadow: 2px 2px 5px black;
+    z-index: 5;
+}
+
+/* ================= CLICK AREA ================= */
+.click {
+    width: 100%;
+    height: 100%;
+}
+
+.button-score {
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* +1 effect */
+#plus {
+    position: absolute;
+    color: #ff4d4d;
+    font-size: 32px;
+    font-weight: bold;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* ================= UPGRADE ================= */
+.buy-click {
+    background: linear-gradient(145deg, #3d3d3d, #1c1c1c);
+    border-radius: 15px;
+    border: 2px solid gold;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 15px;
+    gap: 10px;
+    transition: transform 0.2s;
+}
+
+.buy-click:hover {
+    transform: scale(1.03);
+}
+
+.plus-more-click {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.buy {
+    background: gold;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.buy:hover {
+    opacity: 0.5;
+    transform: scale(1.05);
+}
+
+/* ================= STORE ITEMS ================= */
+.purchase-items {
+    width: calc(50% - 10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid gold;
+    border-radius: 12px;
+    padding: 10px;
+    gap: 8px;
+    transition: transform 0.2s, background 0.2s;
+    cursor: pointer;
+}
+
+.purchase-items:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.image-ex {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.money-total {
+    color: gold;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.btn-purchase {
+    width: 80%;
+    padding: 6px 10px;
+    background: gold;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-purchase:hover {
+    background: orange;
+    transform: scale(1.05);
+}
+
+/* ===================================================
+   ACHIEVEMENT LOG
+=================================================== */
+.achieve-log {
+    width: 100%;
+    height: 20%;
+    min-height: 120px;
+    max-height: 170px;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px;
+    background: linear-gradient(145deg, #3d3d3d, #1c1c1c);
+    border: 2px solid gold;
+    border-radius: 15px;
+
+    transition: transform 0.2s, background 0.2s;
+}
+
+.achieve-log:hover {
+    transform: scale(1.02);
+    background: linear-gradient(145deg, #4a4a4a, #222);
+}
+
+.achieve-log img {
+    width: 100%;
+    max-height: 80px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    padding: 6px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+}
+
+.achieve-item-log {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: white;
+    font-weight: bold;
+}
+
+.requirement {
+    color: gold;
+    font-size: 16px;
+}
+
+.progress {
+    position: relative;
+    width: 100%;
+    height: 16px;
+    background: #222;
+    border-radius: 10px;
+    border: 1px solid gold;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, gold, orange);
+    transition: width 0.3s ease;
+}
+
+.percent {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+}
+
+.completed {
+    width: 100%;
+    height: 42px;
+    background: gold;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.completed:hover {
+    background: orange;
+    transform: scale(1.05);
+}
+
+.completed:disabled {
+    background: #777;
+    cursor: not-allowed;
+}
+
+/* Khung nền của thanh tiến trình */
+.progress {
+    position: relative;
+    width: 100%;
+    height: 16px;
+    background: #1a1a1a; /* Nền tối hẳn để nổi bật thanh bar */
+    border-radius: 8px;
+    border: 1px solid gold;
+    overflow: hidden; /* Cắt phần thanh bar bị dư khi bo góc */
+}
+
+/* Thanh chạy màu vàng (Phần quan trọng nhất) */
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #ffd700, #ffa500); /* Vàng chuyển sang cam */
+    width: 0%; /* Mặc định là 0%, JS sẽ thay đổi giá trị này */
+    transition: width 0.4s ease-in-out; /* Tạo hiệu ứng thanh trượt mượt mà */
+}
+
+/* Con số hiển thị % */
+.percent {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #000; /* Đổ bóng chữ để dễ nhìn trên nền vàng */
+    z-index: 5;
+    pointer-events: none;
+}
+
+
+
+/* ================= USER STATUS BUTTON ================= */
+
+.user-status{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    color:gold;
+}
+.user-status > button{
+    width: 100%;
+    height: 52px;
+
+    border-radius: 14px;
+    border: 2px solid gold;
+
+    background: linear-gradient(145deg, #2b1c0f, #120b06);
+    color: gold;
+
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    box-shadow:
+        inset 0 0 10px rgba(255,215,0,0.25),
+        0 6px 14px rgba(0,0,0,0.85);
+
+    transition: all 0.25s ease;
+}
+
+.user-status > button:hover{
+    background: linear-gradient(145deg, gold, orange);
+    color: #1a1a1a;
+
+    transform: scale(1.05);
+
+    box-shadow:
+        inset 0 0 12px rgba(255,255,255,0.45),
+        0 10px 20px rgba(255,215,0,0.75);
+}
+
+.user-status > button:active{
+    transform: scale(0.95);
+    box-shadow:
+        inset 0 0 14px rgba(0,0,0,0.6);
+}
+
+.user-status > button.active{
+    background: linear-gradient(145deg, #2fff00, #0a8f00);
+    border-color: #baffba;
+    color: #0a0a0a;
+
+    box-shadow:
+        0 0 18px rgba(50,255,50,0.9),
+        inset 0 0 10px rgba(255,255,255,0.35);
+}
+
+
+
+/* ================= PHOTO UPLOAD CARD ================= */
+.photo_upload{
+    width: 100%;
+    height: 40%;
+    min-height: 260px;
+
+    background: linear-gradient(145deg, #2e2e2e, #151515);
+    border: 2px solid gold;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px;
+    gap: 20px;
+
+    box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.2),
+                0 8px 20px rgba(0,0,0,0.6);
+}
+
+
+/* ================= UPLOADING AREA ================= */
+.uploading{
+    width: 100%;
+    flex: 1;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px dashed gold;
+    border-radius: 15px;
+
+    background-color: rgba(0,0,0,0.4);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.uploading:hover{
+    background-color: rgba(255,215,0,0.1);
+    box-shadow: 0 0 15px rgba(255,215,0,0.4); 
+}
+
+/* Icon */
+.uploading > label{
+    font-size: 40px;
+    color: gold;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+/* Khi có ảnh */
+.uploading.has-image > label,
+.uploading.has-image::after{
+    opacity: 0;
+}
+
+/* Text phụ */
+.uploading::after{
+    content: "Upload Background";
+    position: absolute;
+    bottom: 10px;
+    font-size: 14px;
+    color: #ffd700;
+    letter-spacing: 1px;
+}
+
+/* ================= BUTTON AREA ================= */
+.accept{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Save & Reset buttons */
+.saveBtn,
+.resetBtn{
+    flex: 1;
+    height: 45px;
+
+    border: none;
+    border-radius: 12px;
+
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+
+    transition: background 0.2s, transform 0.2s;
+}
+
+/* Save */
+.saveBtn{
+    background: gold;
+    color: #000;
+}
+
+.saveBtn:hover{
+    background: orange;
+    transform: scale(1.05);
+}
+
+/* Reset */
+.resetBtn{
+    background: #444;
+    color: #fff;
+}
+
+.resetBtn:hover{
+    background: #666;
+    transform: scale(1.05);
+}
+
+
+
+
+
+/* ================= RESPONSIVE ================= */
+@media(max-width: 1024px) {
+    html, body {
+        overflow: auto;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        height: auto;
+    }
+
+    .place-to-click {
+        height: 50vh;
+    }
+
+    .click-rpg {
+        height: auto;
+    }
+
+    .achieve-log {
+        height: auto;
+    }
+
+    .plus-effect {
+        display: none;
+    }
+
+    .purchase-items{
+
+        width: 30%;
+
+    }
+
+}
+
+@media (max-width: 720px) {
+    .money-total {
+        font-size: 15px;
+    }
+
+    .support-button{
+
+        max-height: 50vh;
+
+    }
+
+    .achieve-log {
+        grid-template-columns: 60px 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .completed {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ================= TOUCH OPTIMIZATION ================= */
+.btn-sp, .buy, .btn-purchase, .completed {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ================= HIDE SCROLLBAR ================= */
+.support-button, .click-rpg-sp {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.support-button::-webkit-scrollbar {
+    display: none;
+}
+
+.image_uploading{
+    display: none !important;
+}
+
+.bg-change-ins{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    padding:2%;
+}
+
+#none-1, #none-2, #none-3, #none-4, #none-5, #none-6{
+
+    display: none;
+
+}
+
+.storage{
+
+    width: 100%;
+    height: 100%;
+    display: grid;
+    gap:20px;
+    grid-template-rows: 8fr 1fr;
+
+}
+
+.fetch-store{
+
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    border: 2px gold solid;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+
+}
+
+.purchase-btn{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* ================= PURCHASE BUTTON ================= */
+.typical {
+    width: 70%;
+    height: 40px;
+
+    background: linear-gradient(145deg, #ffd700, #ff9f00);
+    border: 2px solid gold;
+    border-radius: 18px;
+
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    color: #1b1b1b;
+    cursor: pointer;
+
+    box-shadow:
+        inset 0 0 8px rgba(255, 255, 255, 0.35),
+        0 6px 12px rgba(0, 0, 0, 0.8);
+
+    transition: all 0.25s ease;
+}
+
+/* Hover = sáng + nổi */
+.typical:hover {
+    background: linear-gradient(145deg, #ffe066, #ffb300);
+    transform: translateY(-2px) scale(1.05);
+
+    box-shadow:
+        inset 0 0 10px rgba(255, 255, 255, 0.5),
+        0 10px 20px rgba(255, 215, 0, 0.6);
+}
+
+/* Click = chìm xuống */
+.typical:active {
+    transform: translateY(1px) scale(0.97);
+    box-shadow:
+        inset 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Disabled (không đủ tiền) */
+.typical:disabled {
+    background: linear-gradient(145deg, #777, #444);
+    border-color: #999;
+    color: #222;
+
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+    opacity: 0.7;
+}
+
+
+/* ================= STORE PRODUCT CARD ================= */
+.store-product {
+    width: 100%;
+    height: 20%;
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 1fr;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px;
+    background: linear-gradient(145deg, #2a2a2a, #161616);
+    border-radius: 20px;
+}
+
+/* ================= PRODUCT IMAGE ================= */
+.store-product .image-ex {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+
+    box-shadow:
+        inset 0 0 10px rgba(255, 215, 0, 0.25),
+        0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+/* ================= PRICE & INFO ================= */
+.store-product .money-total {
+    font-size: 16px;
+    font-weight: bold;
+    color: gold;
+    text-shadow: 1px 1px 2px black;
+}
+
+/* ================= QUANTITY CONTROL ================= */
+.store-product > div:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Quantity number */
+.quantity {
+    min-width: 32px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: gold;
+
+    padding: 4px 6px;
+    border-radius: 6px;
+    background: #111;
+    border: 1px solid gold;
+}
+
+/* ================= PLUS / MINUS BUTTON ================= */
+.minus-product,
+.plus-product {
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+    border: 1px solid gold;
+    background: radial-gradient(circle, #3a2b1d, #1b1209);
+
+    color: gold;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.2s ease;
+}
+
+.minus-product:hover,
+.plus-product:hover {
+    background: gold;
+    color: black;
+    transform: scale(1.15);
+}
+
+.minus-product:active,
+.plus-product:active {
+    transform: scale(0.9);
+}
+
+.force-hide {
+    display: none !important;
+}
