@@ -1,0 +1,357 @@
+/* =====================================================
+   ROOT VARIABLES
+===================================================== */
+:root {
+    --gold: #ffd700;
+    --gold-soft: rgba(255,215,0,.25);
+    --cyan: #00ffff;
+    --cyan-soft: rgba(0,255,255,.25);
+
+    --dark-1: #0b0b0b;
+    --dark-2: #121212;
+}
+
+/* =====================================================
+   ACCOUNT LOAD – MAIN CONTAINER
+===================================================== */
+.account-load {
+    width: 92%;
+    margin: 40px auto;
+    padding: 28px;
+
+    /* GIỮ HEIGHT ỔN ĐỊNH */
+    min-height: 520px;
+    height: 65vh;
+    max-height: 720px;
+
+    display: grid;
+    grid-template-columns: 260px 1fr 360px;
+    gap: 28px;
+
+    background: linear-gradient(145deg, #141414, #080808);
+    border-radius: 28px;
+
+    border: 2px solid rgba(255,215,0,.45);
+    box-shadow:
+        0 0 45px rgba(255,215,0,.25),
+        inset 0 0 25px rgba(255,215,0,.06);
+
+    overflow: hidden;
+}
+
+/* FIX GRID OVERFLOW TRIỆT ĐỂ */
+.account-load,
+.search-add,
+.recAva,
+.recAddAva {
+    min-height: 0;
+}
+
+/* =====================================================
+   LEFT – PROFILE AVATAR
+===================================================== */
+.profile-image {
+    align-self: center;
+    justify-self: center;
+
+    width: 220px;
+    height: 220px;
+    padding: 10px;
+
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        #ffd700,
+        #ffb700,
+        #ffd700
+    );
+
+    box-shadow:
+        0 0 35px rgba(255,215,0,.9),
+        0 0 80px rgba(255,215,0,.35);
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #000;
+}
+
+/* =====================================================
+   CENTER – ACCOUNT INFO
+===================================================== */
+#loading-acc {
+    padding: 26px;
+    border-radius: 22px;
+
+    background: linear-gradient(145deg, #0f0f0f, #070707);
+    border: 1.8px solid rgba(255,215,0,.35);
+
+    box-shadow: inset 0 0 18px rgba(255,215,0,.08);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    font-size: 17px;
+    line-height: 1.75;
+    color: #eaeaea;
+}
+
+#loading-acc b {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* =====================================================
+   RIGHT – AVATAR AREA (50 / 50)
+===================================================== */
+.search-add {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr; /* CHIA ĐỀU */
+    gap: 16px;
+}
+
+/* ================= AVATAR GRID ================= */
+.recAva {
+    height: 100%;
+    padding: 18px;
+    border-radius: 22px;
+
+    background: linear-gradient(145deg, #0e0e0e, #050505);
+    border: 2px solid rgba(0,255,255,.35);
+
+    box-shadow:
+        inset 0 0 18px rgba(0,255,255,.08),
+        0 0 25px rgba(0,255,255,.25);
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+
+    overflow-y: auto;
+}
+
+/* ================= AVATAR BUTTON ================= */
+.btnRec {
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border: 2px solid rgba(0,255,255,.55);
+    cursor: pointer;
+
+    transition: all .25s ease;
+    box-shadow: 0 0 12px rgba(0,255,255,.35);
+}
+
+.btnRec:hover {
+    transform: scale(1.08);
+    box-shadow:
+        0 0 25px rgba(0,255,255,.9),
+        0 0 45px rgba(0,255,255,.4);
+}
+
+.btnRec.active {
+    border: 3px solid var(--gold);
+    box-shadow:
+        0 0 22px rgba(255,215,0,.9),
+        0 0 45px rgba(255,215,0,.45);
+}
+
+/* ================= ADD / SEARCH PANEL ================= */
+.recAddAva {
+    height: 100%;
+    padding: 18px;
+    border-radius: 22px;
+
+    background: linear-gradient(145deg, #0e0e0e, #050505);
+    border: 2px solid rgba(0,255,255,.35);
+
+    box-shadow:
+        inset 0 0 18px rgba(0,255,255,.08),
+        0 0 25px rgba(0,255,255,.2);
+
+    color: #eaeaea;
+    overflow: hidden;
+}
+
+/* =====================================================
+   SCROLLBAR (GAME STYLE)
+===================================================== */
+.recAva::-webkit-scrollbar {
+    width: 6px;
+}
+
+.recAva::-webkit-scrollbar-thumb {
+    background: linear-gradient(#00ffff, #009999);
+    border-radius: 10px;
+}
+
+/* =====================================================
+   REC ADD AVATAR – UPLOAD FORM
+===================================================== */
+.photo_upload {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+/* ================= UPLOAD PREVIEW ================= */
+.uploading {
+    flex: 1;
+
+    border-radius: 18px;
+    border: 2px dashed rgba(0,255,255,.45);
+
+    background:
+        linear-gradient(145deg, #0b0b0b, #050505);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    position: relative;
+
+    box-shadow:
+        inset 0 0 18px rgba(0,255,255,.12),
+        0 0 18px rgba(0,255,255,.25);
+
+    transition: .25s ease;
+}
+
+.uploading:hover {
+    border-color: var(--cyan);
+    box-shadow:
+        inset 0 0 25px rgba(0,255,255,.2),
+        0 0 30px rgba(0,255,255,.6);
+}
+
+/* ICON / LABEL */
+.uploading label {
+    font-size: 48px;
+    color: var(--cyan);
+    opacity: .85;
+    pointer-events: none;
+}
+
+/* WHEN IMAGE PREVIEW EXISTS */
+.uploading.has-image {
+    border-style: solid;
+    padding: 0;
+}
+
+.uploading.has-image label {
+    display: none;
+}
+
+.uploading img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+/* ================= ACTION BUTTONS ================= */
+.accept {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+/* COMMON BUTTON */
+.accept button {
+    height: 44px;
+    border-radius: 999px;
+
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .5px;
+
+    cursor: pointer;
+    transition: .25s ease;
+}
+
+/* APPLY */
+.saveBtn {
+    background: linear-gradient(145deg, #ffd700, #ffb700);
+    border: none;
+    color: #000;
+
+    box-shadow:
+        0 0 18px rgba(255,215,0,.65),
+        inset 0 0 8px rgba(255,255,255,.35);
+}
+
+.saveBtn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 28px rgba(255,215,0,.95),
+        0 0 55px rgba(255,215,0,.45);
+}
+
+/* RESET */
+.resetBtn {
+    background: linear-gradient(145deg, #111, #060606);
+    border: 1.6px solid rgba(0,255,255,.55);
+    color: var(--cyan);
+
+    box-shadow:
+        0 0 14px rgba(0,255,255,.25);
+}
+
+.resetBtn:hover {
+    background: linear-gradient(145deg, #0f0f0f, #080808);
+    box-shadow:
+        0 0 22px rgba(0,255,255,.65);
+}
+
+/* ================= DISABLED STATE ================= */
+.accept button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media (max-width: 1024px) {
+    .account-load {
+        grid-template-columns: 220px 1fr;
+    }
+
+    .search-add {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 640px) {
+    .account-load {
+        grid-template-columns: 1fr;
+        gap: 22px;
+
+        height: auto;
+        min-height: unset;
+        max-height: unset;
+    }
+
+    .profile-image {
+        width: 160px;
+        height: 160px;
+    }
+
+    .search-add {
+        grid-template-rows: 1fr 1fr;
+    }
+}

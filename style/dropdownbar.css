@@ -1,0 +1,145 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ================= BODY ================= */
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #2b2b2b, #0b0b0b 70%);
+    color: #fff;
+}
+
+/* ================= MAIN LAYOUT ================= */
+.main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+    padding: 40px 0;
+}
+
+/* ================= NAV ================= */
+.navigator {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    align-items: start;
+}
+
+/* ================= CARD ================= */
+.content-in {
+    background: linear-gradient(180deg, #1a1a1a, #0f0f0f);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow:
+        0 0 15px rgba(0, 255, 255, 0.15),
+        inset 0 0 10px rgba(255, 255, 255, 0.03);
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* card Setting làm mốc cho dropdown */
+.content-in.setting {
+    position: relative;
+}
+
+/* ================= BUTTON ================= */
+.btn-size {
+    height: 60px;
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid #00ffff;
+    background: linear-gradient(145deg, #00ffff, #00b3b3);
+    color: #003333;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+}
+
+.btn-size:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+        0 0 20px rgba(0, 255, 255, 0.9),
+        0 0 40px rgba(0, 255, 255, 0.4);
+}
+
+/* ================= DROPDOWN WRAP ================= */
+/* TÁCH KHỎI GRID FLOW -> KHÔNG ĐẨY LAYOUT */
+.dropdown-wrap {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* ================= DROPDOWN ================= */
+.size-inside {
+    list-style: none;
+    margin-top: 12px;
+    background: linear-gradient(180deg, #202020, #121212);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.25s ease;
+
+    pointer-events: auto;
+}
+
+/* active */
+.content-in.active .size-inside {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================= DROPDOWN ITEM ================= */
+.size-inside li button {
+    width: 100%;
+    padding: 14px 18px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.size-inside li button:hover {
+    background: rgba(0, 255, 255, 0.15);
+    color: #00ffff;
+    padding-left: 26px;
+}
+
+.size-inside li:last-child button:hover {
+    background: rgba(255, 94, 0, 0.15);
+    color: red;
+}
+
+/* ================= ACCOUNT LOAD (GIỮ VỊ TRÍ) ================= */
+.account-load {
+    width: 80%;
+    min-height: 300px;
+    border-radius: 20px;
+    border: 2px solid #ffcc00;
+    padding: 40px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+    .navigator {
+        grid-template-columns: 1fr;
+    }
+}

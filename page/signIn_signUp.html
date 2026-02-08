@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sign Up</title>
+
+    <link rel="stylesheet" href="../style/signIn_signUp.css">
+</head>
+<body>
+
+    <style>
+
+
+
+    </style>
+
+    <div class="container">
+
+        <!-- Background -->
+        <div id="bg-ch" class="background-changer">
+            <img src="../Picture/ChatGPT Image 22_40_25 10 thg 1, 2026.png" alt="">
+        </div>
+
+        <!-- ================= LOGIN ================= -->
+        <div class="field-flex m1">
+            <fieldset class="field-set-form">
+
+                <legend class="text-form">
+                    <span>L</span>
+                    <span>o</span>
+                    <span>g</span>
+                    <span>i</span>
+                    <span>n</span>
+                </legend>
+
+                <form id="subm" class="text-field-set-flex">
+
+                    <input
+                        id="fname"
+                        type="email"
+                        class="input-field"
+                        placeholder="Email"
+                    >
+
+                    <input
+                        id="lname"
+                        type="password"
+                        class="input-field"
+                        placeholder="Password"
+                    >
+
+                    <div class="catcha">
+                        <input
+                            id="catcha-take"
+                            type="text"
+                            class="input-field-catcha"
+                            placeholder="Captcha"
+                        >
+
+                        <div class="catcha-container">
+                            <label id="catcha-random"></label>
+                        </div>
+                    </div>
+
+                    <button
+                        type="submit"
+                        id="btn-log-1"
+                        class="btn"
+                    >
+                        Log In
+                    </button>
+
+                </form>
+
+                <div class="btn-changer">
+                    <button
+                        type="button"
+                        class="login-btn"
+                        onclick="login_changer(event)"
+                    >
+                        Login
+                    </button>
+
+                    <button
+                        type="button"
+                        class="signIn-btn"
+                        onclick="signIn_changer(event)"
+                    >
+                        Sign Up
+                    </button>
+                </div>
+
+            </fieldset>
+        </div>
+
+        <!-- ================= SIGN UP ================= -->
+        <div class="field-flex m2">
+            <fieldset class="field-set-form">
+
+                <legend class="text-form">
+                    <span>S</span>
+                    <span>i</span>
+                    <span>g</span>
+                    <span>n</span>
+                    <span>U</span>
+                    <span>p</span>
+                </legend>
+
+                <form id="form_dn" class="text-field-set-flex">
+
+                    <input
+                        id="gma"
+                        type="email"
+                        class="input-field"
+                        placeholder="Email"
+                    >
+
+                    <input
+                        id="mkh"
+                        type="password"
+                        class="input-field"
+                        placeholder="Password"
+                    >
+
+                    <input
+                        id="re_mkh"
+                        type="password"
+                        class="input-field"
+                        placeholder="Confirm Password"
+                    >
+
+                    <button
+                        type="submit"
+                        id="btn-log-2"
+                        class="btn"
+                    >
+                        Sign Up
+                    </button>
+
+                </form>
+
+                <div class="btn-changer">
+                    <button
+                        type="button"
+                        class="login-btn"
+                        onclick="login_changer(event)"
+                    >
+                        Login
+                    </button>
+
+                    <button
+                        type="button"
+                        class="signIn-btn"
+                        onclick="signIn_changer(event)"
+                    >
+                        Sign Up
+                    </button>
+                </div>
+
+            </fieldset>
+        </div>
+
+    </div>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore-compat.js"></script>
+
+    <script src="../script/firebase.js"></script>
+    <script src="../script/signIn_signUp.js"></script>
+
+</body>
+</html>
