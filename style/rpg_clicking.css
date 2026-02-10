@@ -912,3 +912,149 @@ html, body {
 .force-hide {
     display: none !important;
 }
+
+/* ================= POWER LIST ================= */
+.power-list{
+    margin-top: 30px;
+    display: none;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ================= POWER CARD ================= */
+.power-show-list{
+    display: grid;
+    grid-template-columns: 64px 1fr 140px;
+    align-items: center;
+    gap: 20px;
+
+    padding: 18px 22px;
+    border-radius: 18px;
+
+    background: linear-gradient(
+        160deg,
+        #1b1b1b,
+        #111
+    );
+
+    border: 1.5px solid rgba(255, 200, 120, 0.35);
+
+    transition: all 0.3s ease;
+}
+
+/* ================= ICON ================= */
+.power-show-list > span{
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.6rem;
+
+    background: linear-gradient(
+        145deg,
+        #ffcf6a,
+        #e6a93d
+    );
+
+    color: #2b1a00;
+
+    box-shadow:
+        0 6px 16px rgba(255,180,80,0.5),
+        inset 0 0 8px rgba(255,255,255,0.4);
+}
+
+/* ================= DETAIL ================= */
+.power-detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* TÊN POWER */
+.power-detail span:nth-child(1){
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffe6b3;
+    letter-spacing: 0.5px;
+}
+
+/* GIÁ TIỀN */
+.power-detail span:nth-child(2){
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #f7c948;
+}
+
+/* HỆ SỐ / MÔ TẢ */
+.power-detail span:nth-child(3){
+    font-size: 1rem;
+    color: #d0c6b2;
+    opacity: 0.9;
+}
+
+/* ================= PURCHASE ================= */
+.purchasing{
+    height: 46px;
+    border-radius: 14px;
+    border: none;
+
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+
+    cursor: pointer;
+
+    background: linear-gradient(
+        135deg,
+        #f7c948,
+        #f1a500
+    );
+
+    color: #2a1a00;
+
+    box-shadow:
+        0 6px 16px rgba(241,165,0,0.6);
+
+    transition: all 0.25s ease;
+}
+
+/* ================= HOVER ================= */
+.power-show-list:hover{
+    transform: translateY(-4px);
+    border-color: rgba(255,210,130,0.75);
+}
+
+.purchasing:hover{
+    transform: scale(1.06);
+    background: linear-gradient(
+        135deg,
+        #ffd86b,
+        #ffb000
+    );
+    box-shadow:
+        0 8px 22px rgba(255,190,90,0.8);
+}
+
+/* ================= RARITY ================= */
+.power-show-list.rare{
+    border-color: rgba(0,200,255,0.6);
+    box-shadow:
+        0 10px 26px rgba(0,200,255,0.35);
+}
+
+.power-show-list.legendary{
+    border-color: rgba(180,100,255,0.7);
+    box-shadow:
+        0 12px 32px rgba(180,100,255,0.5);
+}
+
+.force-to-be-hide{
+
+    display: none !important;
+
+}

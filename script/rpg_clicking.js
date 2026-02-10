@@ -19,6 +19,7 @@ let totalClicks = 0;
 let currentBgUrl = null;
 let claimedArray = [];
 
+
 /*=========================
     ACHIEVEMENT STATE
 =========================*/
@@ -71,12 +72,13 @@ function parseMoney(el) {
 }
 
 function getClickValue() {
-    return Number((clickPower * clickMultiple).toFixed(1));
+    return Number((clickPower * clickMultiple * multi_pow).toFixed(1));
 }
 
 function updateScore() {
-    score.textContent = `$: ${Math.floor(scoreValue)}`;
+    score.textContent = `$: ${formatMoney(scoreValue)}`;
 }
+
 
 setInterval(() => {
 
@@ -199,7 +201,7 @@ const upgrades = [
 =========================*/
 upgrades.forEach(upg => {
     upg.levelEl.textContent = `Level ${upg.level}`;
-    upg.costEl.textContent = `${upg.cost}$`;
+    upg.costEl.textContent = `${formatMoney(upg.cost)}$`;
 });
 updateScore();
 
@@ -215,7 +217,7 @@ clickSpace.addEventListener("click", (e) => {
     const rect = clickSpace.getBoundingClientRect();
     const plus = document.createElement("div");
 
-    plus.textContent = `+${gain}`;
+    plus.textContent = `+${formatMoney(gain)}`;
     plus.style.position = "absolute";
     plus.style.left = (e.clientX - rect.left) + "px";
     plus.style.top = (e.clientY - rect.top) + "px";
@@ -250,7 +252,7 @@ function buyUpgrade(index) {
     upg.cost = upg.nextCost();
 
     upg.levelEl.textContent = `Level ${upg.level}`;
-    upg.costEl.textContent = `${upg.cost}$`;
+    upg.costEl.textContent = `${formatMoney(upg.cost)}$`;
     updateScore();
 }
 
@@ -281,7 +283,7 @@ window.loadStore = function () {
                 html += `
                     <div class="purchase-items tab-release">
                         <div class="image-ex" style="background-image:url('${item.background}')"></div>
-                        <span class="money-total">${item.cost}$</span>
+                        <span class="money-total">${formatMoney(item.cost)}$</span>
                         <span class="money-total">x${item.multi} multiples</span>
                         <button class="btn-purchase"
                             onclick="purchaseCart('${item.background}',${item.cost},${item.multi})">
@@ -351,7 +353,7 @@ const BillManager = (() => {
                             style="background-image:url('${item.bg_url}')"></div>
 
                         <span class="money-total">
-                            ${(item.cost * item.quantity).toFixed(2)}$
+                            ${formatMoney(item.cost * item.quantity)}$
                         </span>
 
                         <span class="money-total">
@@ -374,7 +376,7 @@ const BillManager = (() => {
 
             billList.innerHTML = html;
             document.getElementById("total-price").textContent =
-                `Total: ${total.toFixed(2)}$`;
+                `Total: ${formatMoney(total)}$`;
 
         } catch (err) {
             console.error("Load bill error:", err);
@@ -671,9 +673,9 @@ window.loadStatus = function () {
             <p><b>UID:</b> ${userSession.uid}</p>
             <p><b>Email:</b> ${userSession.email || "N/A"}</p>
             <p><b>Total Clicks:</b> ${totalClicks}</p>
-            <p><b>Money:</b> $${Math.floor(scoreValue)}</p>
+            <p><b>Money:</b> $${formatMoney(scoreValue)}</p>
             <p><b>Click Power:</b> ${clickPower}</p>
-            <p><b>Multiplier:</b> x${clickMultiple}</p>
+            <p><b>Multiplier:</b> x${clickMultiple * multi_pow}</p>
             <button onclick="logOut()">Log out</button>
             <button onclick="goBack()">Back to menu</button>
         </div>
@@ -776,166 +778,21 @@ function initBackgroundUpload() {
     });
 }
 
-/*=========================
-    FIREBASE SAVE / LOAD
-    NO RESET – NO REBUILD
-=========================*/
-
-/* ===== SAVE GAME ===== */
-const saveGame = async () => {
-    if (!userSession) return;
-
-    try {
-        await db.collection("gameData")
-            .doc(userSession.uid)
-            .set({
-                uid: userSession.uid,
-                email: userSession.email || null,
-
-                scoreValue,
-                totalClicks,
-                clickPower,
-                clickMultiple,
-
-                upgrades: {
-                    clickPower: {
-                        level: upgrades[0].level,
-                        cost: upgrades[0].cost
-                    },
-                    clickMultiple: {
-                        level: upgrades[1].level,
-                        cost: upgrades[1].cost
-                    },
-                    clickPower_1: {
-                        level: upgrades[2].level,
-                        cost: upgrades[2].cost
-                    },
-                    clickMultiple_1: {
-                        level: upgrades[3].level,
-                        cost: upgrades[3].cost
-                    },
-                    clickPower_2: {
-                        level: upgrades[4].level,
-                        cost: upgrades[4].cost
-                    },
-                    clickMultiple_2: {
-                        level: upgrades[5].level,
-                        cost: upgrades[5].cost
-                    },
-                    clickPower_3: {
-                        level: upgrades[6].level,
-                        cost: upgrades[6].cost
-                    },
-                    clickMultiple_3: {
-                        level: upgrades[7].level,
-                        cost: upgrades[7].cost
-                    }
-                },
-
-                achievementsClaimed: claimedArray,
-                backgroundUrl: currentBgUrl,
-
-                lastSave: firebase.firestore.FieldValue.serverTimestamp()
-            }, { merge: true });
-
-    } catch (err) {
-        console.error("Save game error:", err);
-    }
-};
-
-
-/* ===== LOAD GAME ===== */
-const loadGame = async () => {
-    if (!userSession) return;
-
-    try {
-        const doc = await db
-            .collection("gameData")
-            .doc(userSession.uid)
-            .get();
-
-        if (!doc.exists) return;
-
-        const data = doc.data();
-
-        /* ===== CORE (GIỮ NGUYÊN) ===== */
-        scoreValue    = data.scoreValue    ?? scoreValue;
-        totalClicks   = data.totalClicks   ?? totalClicks;
-        clickPower    = data.clickPower    ?? clickPower;
-        clickMultiple = data.clickMultiple ?? clickMultiple;
-
-        claimedArray  = data.achievementsClaimed ?? claimedArray;
-        currentBgUrl  = data.backgroundUrl ?? currentBgUrl;
-
-        /* ===== UPGRADES (SET TRỰC TIẾP) ===== */
-        if (data.upgrades && upgrades?.length) {
-
-            const map = [
-                "clickPower",
-                "clickMultiple",
-                "clickPower_1",
-                "clickMultiple_1",
-                "clickPower_2",
-                "clickMultiple_2",
-                "clickPower_3",
-                "clickMultiple_3"
-            ];
-
-            map.forEach((key, i) => {
-                if (!data.upgrades[key]) return;
-
-                upgrades[i].level = data.upgrades[key].level ?? upgrades[i].level;
-                upgrades[i].cost  = data.upgrades[key].cost  ?? upgrades[i].cost;
-
-                upgrades[i].levelEl.textContent = `Level ${upgrades[i].level}`;
-                upgrades[i].costEl.textContent  = `${upgrades[i].cost}$`;
-            });
-        }
-
-        /* ===== BACKGROUND ===== */
-        if (currentBgUrl) {
-            const place = document.querySelector(".place-to-click");
-            if (place) {
-                place.style.backgroundImage = `url('${currentBgUrl}')`;
-            }
-        }
-
-        updateScore();
-
-    } catch (err) {
-        console.error("Load game error:", err);
-    }
-};
-
-
-/*=========================
-    AUTO SAVE / LOAD
-=========================*/
-
-setInterval(() => {
-    if (userSession) saveGame();
-}, 10000);
-
-window.addEventListener("beforeunload", () => {
-    if (userSession) saveGame();
-});
-
-window.addEventListener("load", () => {
-    loadGame();
-});
-
 /* ======================================
    POWER CHANGE – FIXED
 ====================================== */
 
 const powerBtns = document.querySelectorAll(".power-change button");
 const upgradeItems = document.querySelectorAll(".buy-click");
+const power_list_form = document.getElementById("power-list")
 
 /* ẨN TẤT CẢ UPGRADE */
 function hideUpgrade() {
     upgradeItems.forEach(item => {
         item.classList.add("force-hide");
     });
+
+    power_list_form.style.display = "flex"
 }
 
 /* HIỆN UPGRADE – TÔN TRỌNG CSS */
@@ -943,6 +800,8 @@ function showUpgrade() {
     upgradeItems.forEach(item => {
         item.classList.remove("force-hide");
     });
+
+    power_list_form.style.display = "none"
 }
 
 /* EVENT */
@@ -952,6 +811,83 @@ powerBtns.forEach(btn => {
         if (btn.textContent.includes("⬆️")) hideUpgrade();
     });
 });
+
+window.innerPower = async () => {
+
+    fetch("../json/power_list.json")
+        .then(res => res.json())
+        .then(power => {
+
+            let inPower = "";
+
+            power.forEach(inside => {
+
+                const isBought = boughtArray.includes(inside.id);
+
+                inPower += `
+                    <div class="power-show-list"
+                        style="${isBought ? "display:none" : ""}">
+
+                        <span>🌋</span>
+
+                        <div id="${inside.id}" class="power-detail">
+                            <span>${inside.title}</span>
+                            <span>${formatMoney(inside.cost)}$</span>
+                            <span>x${inside.multi}</span>
+                        </div>
+
+                        <button class="purchasing"
+                            onclick="purchaseMult('${inside.id}', ${inside.cost}, ${inside.multi})">
+                            Purchase
+                        </button>
+
+                    </div>
+                `;
+            });
+
+            document.getElementById("power-list").innerHTML = inPower;
+        });
+};
+
+innerPower()
+
+
+let multi_pow = 1
+let boughtArray = []
+
+window.purchaseMult = async (uid, costly, mult) => {
+
+    if (!userSession) {
+        window.location.href = "signIn_signUp.html";
+        return;
+    }
+
+    // ❌ đã mua rồi → không cho mua lại
+    if (boughtArray.includes(uid)) return;
+
+    if (costly <= scoreValue) {
+
+        scoreValue -= costly;
+        multi_pow *= mult;
+
+        // ✅ lưu id power đã mua
+        boughtArray.push(uid);
+
+        // ✅ ẩn UI
+        const item = document.getElementById(uid)
+            ?.closest(".power-show-list");
+        if (item) item.style.display = "none";
+
+        updateScore();
+        saveGame(); // 🔥 save ngay
+    }
+};
+
+
+
+
+
+
 
 
 
@@ -993,4 +929,194 @@ window.goBack = async () => {
 
     window.location.href = "menu.html"
 
+}
+
+
+
+
+
+
+
+
+
+
+
+/*=========================
+    FIREBASE SAVE / LOAD
+    NO RESET – NO REBUILD
+=========================*/
+
+/* ===== SAVE GAME ===== */
+const saveGame = async () => {
+    if (!userSession) return;
+
+    try {
+        await db.collection("gameData")
+            .doc(userSession.uid)
+            .set({
+                uid: userSession.uid,
+                email: userSession.email || null,
+
+                scoreValue,
+                totalClicks,
+                clickPower,
+                clickMultiple,
+                multi_pow,
+
+                upgrades: {
+                    clickPower: {
+                        level: upgrades[0].level,
+                        cost: upgrades[0].cost
+                    },
+                    clickMultiple: {
+                        level: upgrades[1].level,
+                        cost: upgrades[1].cost
+                    },
+                    clickPower_1: {
+                        level: upgrades[2].level,
+                        cost: upgrades[2].cost
+                    },
+                    clickMultiple_1: {
+                        level: upgrades[3].level,
+                        cost: upgrades[3].cost
+                    },
+                    clickPower_2: {
+                        level: upgrades[4].level,
+                        cost: upgrades[4].cost
+                    },
+                    clickMultiple_2: {
+                        level: upgrades[5].level,
+                        cost: upgrades[5].cost
+                    },
+                    clickPower_3: {
+                        level: upgrades[6].level,
+                        cost: upgrades[6].cost
+                    },
+                    clickMultiple_3: {
+                        level: upgrades[7].level,
+                        cost: upgrades[7].cost
+                    }
+                },
+                buyMult: boughtArray,
+
+                achievementsClaimed: claimedArray,
+                backgroundUrl: currentBgUrl,
+
+                lastSave: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+
+    } catch (err) {
+        console.error("Save game error:", err);
+    }
+};
+
+
+/* ===== LOAD GAME ===== */
+const loadGame = async () => {
+    if (!userSession) return;
+
+    try {
+        const doc = await db
+            .collection("gameData")
+            .doc(userSession.uid)
+            .get();
+
+        if (!doc.exists) return;
+
+        const data = doc.data();
+
+        /* ===== CORE (GIỮ NGUYÊN) ===== */
+        scoreValue    = data.scoreValue    ?? scoreValue;
+        totalClicks   = data.totalClicks   ?? totalClicks;
+        clickPower    = data.clickPower    ?? clickPower;
+        clickMultiple = data.clickMultiple ?? clickMultiple;
+        multi_pow     = data.multi_pow     ?? multi_pow;
+
+
+        boughtArray = data.buyMult ?? boughtArray
+        claimedArray  = data.achievementsClaimed ?? claimedArray;
+        currentBgUrl  = data.backgroundUrl ?? currentBgUrl;
+
+        /* ===== UPGRADES (SET TRỰC TIẾP) ===== */
+        if (data.upgrades && upgrades?.length) {
+
+            const map = [
+                "clickPower",
+                "clickMultiple",
+                "clickPower_1",
+                "clickMultiple_1",
+                "clickPower_2",
+                "clickMultiple_2",
+                "clickPower_3",
+                "clickMultiple_3"
+            ];
+
+            map.forEach((key, i) => {
+                if (!data.upgrades[key]) return;
+
+                upgrades[i].level = data.upgrades[key].level ?? upgrades[i].level;
+                upgrades[i].cost  = data.upgrades[key].cost  ?? upgrades[i].cost;
+
+                upgrades[i].levelEl.textContent = `Level ${upgrades[i].level}`;
+                upgrades[i].costEl.textContent  = `${formatMoney(upgrades[i].cost)}$`;
+            });
+        }
+
+        /* ===== BACKGROUND ===== */
+        if (currentBgUrl) {
+            const place = document.querySelector(".place-to-click");
+            if (place) {
+                place.style.backgroundImage = `url('${currentBgUrl}')`;
+            }
+        }
+
+        innerPower()
+
+        updateScore();
+
+    } catch (err) {
+        console.error("Load game error:", err);
+    }
+};
+
+
+/*=========================
+    AUTO SAVE / LOAD
+=========================*/
+
+setInterval(() => {
+    if (userSession) saveGame();
+}, 10000);
+
+window.addEventListener("beforeunload", () => {
+    if (userSession) saveGame();
+});
+
+window.addEventListener("load", () => {
+    loadGame();
+});
+
+/* =========================
+   FORMAT MONEY (K → Ud)
+========================= */
+function formatMoney(num) {
+    if (num === null || num === undefined) return "0";
+
+    const units = [
+        "", "K", "M", "B", "T",
+        "Qa", "Qi", "Sx", "Sp",
+        "Oc", "No", "Dc", "Ud"
+    ];
+
+    let unitIndex = 0;
+    let value = Number(num);
+
+    while (value >= 1000 && unitIndex < units.length - 1) {
+        value /= 1000;
+        unitIndex++;
+    }
+
+    return value % 1 === 0
+        ? value + units[unitIndex]
+        : value.toFixed(2) + units[unitIndex];
 }

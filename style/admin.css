@@ -1,60 +1,70 @@
 /* ==============================
-   ROOT / THEME
+   ROOT / THEME (IMPROVED)
 ================================ */
 :root {
-    --neon: #00f7ff;
-    --neon-soft: rgba(0, 247, 255, 0.4);
-    --neon-glow: rgba(0, 247, 255, 0.8);
+    --neon: #4ffcff;
+    --neon-soft: rgba(79, 252, 255, 0.35);
+    --neon-glow: rgba(79, 252, 255, 0.7);
 
-    --bg-dark: #050505;
-    --bg-panel: rgba(10, 10, 10, 0.75);
+    --accent: #7c7cff;
+    --accent-soft: rgba(124, 124, 255, 0.35);
 
-    --border-soft: rgba(0, 247, 255, 0.25);
-    --text-main: #eaeaea;
-    --text-muted: #9aa0a6;
+    --bg-dark: #06070b;
+    --bg-panel: rgba(14, 16, 22, 0.85);
+
+    --border-soft: rgba(120, 200, 255, 0.25);
+
+    --text-main: #e8eaf0;
+    --text-muted: #a1a7b3;
 }
 
+h5 {
+    color: #e9fdff !important;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-shadow:
+        0 0 6px rgba(79, 252, 255, 0.35),
+        0 0 14px rgba(79, 252, 255, 0.25);
+}
 
 
 /* ==============================
    GLOBAL
 ================================ */
 body {
-    background: radial-gradient(circle at top, #0a0a0a, #000);
+    background:
+        radial-gradient(circle at top, #0f1220, #05060a);
     color: var(--text-main);
     font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 a {
     color: inherit;
+    text-decoration: none;
 }
 
 /* ==============================
    SIDEBAR
 ================================ */
 .sidebar {
-    background: linear-gradient(180deg, #020202, #0a0a0a);
+    background: linear-gradient(180deg, #070914, #0b0e1a);
     min-height: 100vh;
     border-right: 1px solid var(--border-soft);
-}
-
-.sidebar .logo img {
-    filter: drop-shadow(0 0 12px var(--neon-soft));
 }
 
 .sidebar .menu li a {
     display: block;
     padding: 12px 18px;
     margin: 6px 12px;
-    border-radius: 10px;
+    border-radius: 12px;
     color: var(--text-muted);
     transition: 0.25s;
 }
 
 .sidebar .menu li a:hover {
     color: var(--neon);
-    background: rgba(0, 247, 255, 0.08);
-    box-shadow: 0 0 12px var(--neon-soft);
+    background: rgba(79, 252, 255, 0.08);
+    box-shadow: 0 0 14px var(--neon-soft);
 }
 
 /* ==============================
@@ -68,28 +78,34 @@ a {
    CARD / PANEL
 ================================ */
 .shadow-md {
-    background: var(--bg-panel);
-    backdrop-filter: blur(8px);
-    border-radius: 18px;
+    background: linear-gradient(
+        180deg,
+        rgba(18, 22, 34, 0.92),
+        rgba(10, 12, 20, 0.85)
+    );
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
     border: 1px solid var(--border-soft);
     box-shadow:
-        0 0 25px rgba(0, 247, 255, 0.15),
-        inset 0 0 25px rgba(0, 247, 255, 0.05);
+        0 0 30px rgba(0, 0, 0, 0.65),
+        inset 0 0 22px rgba(79, 252, 255, 0.08);
 }
+
 
 /* ==============================
    FORM
 ================================ */
 .form-control {
-    background: #050505;
+    background: #0b0e18;
     border: 1px solid var(--border-soft);
     color: var(--text-main);
+    border-radius: 12px;
 }
 
 .form-control:focus {
-    background: #050505;
+    background: #0b0e18;
     border-color: var(--neon);
-    box-shadow: 0 0 10px var(--neon-soft);
+    box-shadow: 0 0 12px var(--neon-soft);
     color: var(--text-main);
 }
 
@@ -101,45 +117,95 @@ label {
    BUTTON
 ================================ */
 .btn-primary {
-    background: linear-gradient(135deg, #00f7ff, #00c4cc);
+    background: linear-gradient(135deg, var(--neon), var(--accent));
     border: none;
-    color: #000;
+    color: #05060a;
     font-weight: 600;
+    border-radius: 12px;
     box-shadow: 0 0 18px var(--neon-soft);
 }
 
 .btn-primary:hover {
-    box-shadow: 0 0 28px var(--neon-glow);
+    box-shadow:
+        0 0 30px var(--neon-glow),
+        0 0 12px var(--accent-soft);
 }
 
 .btn-grey {
-    background: transparent;
-    border: 1px solid var(--border-soft);
-    color: var(--text-muted);
+    background: linear-gradient(
+        135deg,
+        rgba(120, 130, 150, 0.12),
+        rgba(80, 90, 110, 0.18)
+    );
+    border: 1px solid rgba(160, 180, 200, 0.35);
+    color: #c9d3e0 !important;
+    font-weight: 500;
+    border-radius: 12px;
+    padding: 8px 18px;
+    transition: 0.25s ease;
+    box-shadow:
+        inset 0 0 12px rgba(255, 255, 255, 0.04),
+        0 0 10px rgba(0, 0, 0, 0.45);
 }
 
 .btn-grey:hover {
-    color: var(--neon);
+    color: #ffffff;
     border-color: var(--neon);
+    box-shadow:
+        0 0 14px rgba(79, 252, 255, 0.35),
+        inset 0 0 10px rgba(79, 252, 255, 0.08);
+    transform: translateY(-1px);
 }
+
+.btn-grey:active {
+    transform: scale(0.97);
+    box-shadow:
+        inset 0 0 18px rgba(0, 0, 0, 0.6);
+}
+
 
 /* ==============================
    PRODUCT TABLE
 ================================ */
-.product-table table {
-    color: var(--text-main);
+.product-table {
+    overflow-x: auto;
 }
 
-.product-table thead {
-    border-bottom: 1px solid var(--border-soft);
+.product-table table {
+    background: transparent !important;
+    color: var(--text-main);
+    border-collapse: separate;
+    border-spacing: 0 14px;
+}
+
+.product-table thead th {
+    background: transparent !important;
+    color: var(--neon);
+    border: none;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .product-table tbody tr {
-    transition: 0.2s;
+    background: rgba(10, 12, 20, 0.8) !important;
+    border-radius: 16px;
+    box-shadow: inset 0 0 0 1px var(--border-soft);
+    transition: 0.25s;
 }
 
 .product-table tbody tr:hover {
-    background: rgba(0, 247, 255, 0.05);
+    box-shadow:
+        inset 0 0 0 1px var(--neon),
+        0 0 20px rgba(79, 252, 255, 0.25);
+}
+
+.product-table td {
+    background: transparent !important;
+    border: none;
+    vertical-align: middle;
+    text-align: center;
+    padding: 16px;
 }
 
 /* ==============================
@@ -147,10 +213,10 @@ label {
 ================================ */
 .product-table img,
 .product-item img {
-    width: 90px;
-    height: 90px;
+    width: 78px;
+    height: 78px;
     object-fit: cover;
-    border-radius: 14px;
+    border-radius: 16px;
     border: 2px solid transparent;
     transition: 0.25s;
     cursor: pointer;
@@ -158,8 +224,23 @@ label {
 
 .product-table img:hover {
     border-color: var(--neon);
-    box-shadow: 0 0 18px var(--neon-soft);
-    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--neon-soft);
+    transform: scale(1.08);
+}
+
+/* ==============================
+   DELETE BUTTON
+================================ */
+.product-table .btn-danger {
+    background: rgba(255, 60, 90, 0.15) !important;
+    border: 1px solid rgba(255, 60, 90, 0.6);
+    box-shadow: 0 0 14px rgba(255, 60, 90, 0.35);
+    border-radius: 10px;
+}
+
+.product-table .btn-danger:hover {
+    background: rgba(255, 60, 90, 0.3) !important;
+    box-shadow: 0 0 26px rgba(255, 60, 90, 0.7);
 }
 
 /* ==============================
@@ -184,8 +265,8 @@ label {
         width: 100%;
     }
 
-    .product-table {
-        overflow-x: auto;
+    .product-table table {
+        min-width: 360px;
     }
 }
 
@@ -196,89 +277,5 @@ label {
 
     .shadow-md {
         padding: 16px !important;
-    }
-}
-
-/* ==============================
-   FIX BOOTSTRAP TABLE DARK THEME
-================================ */
-.product-table table {
-    background: transparent !important;
-    color: var(--text-main);
-    border-collapse: separate;
-    border-spacing: 0 14px;
-}
-
-.product-table thead th {
-    background: transparent !important;
-    color: var(--neon);
-    border: none;
-    text-align: center;
-    font-weight: 600;
-}
-
-.product-table tbody tr {
-    background: rgba(0, 0, 0, 0.55) !important;
-    border-radius: 14px;
-    box-shadow: inset 0 0 0 1px var(--border-soft);
-    transition: 0.25s;
-}
-
-.product-table tbody tr:hover {
-    box-shadow:
-        inset 0 0 0 1px var(--neon),
-        0 0 18px rgba(0, 247, 255, 0.25);
-}
-
-.product-table td {
-    background: transparent !important;
-    border: none;
-    vertical-align: middle;
-    text-align: center;
-    padding: 16px;
-}
-
-/* ==============================
-   PRODUCT IMAGE CENTER
-================================ */
-.product-table img {
-    width: 72px;
-    height: 72px;
-    object-fit: cover;
-    border-radius: 14px;
-    border: 2px solid transparent;
-    transition: 0.25s;
-}
-
-.product-table img:hover {
-    border-color: var(--neon);
-    box-shadow: 0 0 18px var(--neon-soft);
-    transform: scale(1.08);
-}
-
-/* ==============================
-   DELETE BUTTON FIX
-================================ */
-.product-table .btn-danger {
-    background: rgba(255, 0, 60, 0.15) !important;
-    border: 1px solid rgba(255, 0, 60, 0.6);
-    box-shadow: 0 0 12px rgba(255, 0, 60, 0.35);
-}
-
-.product-table .btn-danger:hover {
-    background: rgba(255, 0, 60, 0.3) !important;
-    box-shadow: 0 0 22px rgba(255, 0, 60, 0.7);
-}
-
-/* ==============================
-   MOBILE SCROLL
-================================ */
-@media (max-width: 768px) {
-    .product-table {
-        overflow-x: auto;
-    }
-
-    .product-table table {
-        min-width: 360px;
     }
 }

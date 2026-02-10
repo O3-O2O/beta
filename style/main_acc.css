@@ -12,6 +12,16 @@
 }
 
 /* =====================================================
+   RESET FIX OVERFLOW
+===================================================== */
+.account-load,
+.search-add,
+.recAva,
+.recAddAva {
+    min-height: 0;
+}
+
+/* =====================================================
    ACCOUNT LOAD – MAIN CONTAINER
 ===================================================== */
 .account-load {
@@ -19,7 +29,6 @@
     margin: 40px auto;
     padding: 28px;
 
-    /* GIỮ HEIGHT ỔN ĐỊNH */
     min-height: 520px;
     height: 65vh;
     max-height: 720px;
@@ -37,14 +46,6 @@
         inset 0 0 25px rgba(255,215,0,.06);
 
     overflow: hidden;
-}
-
-/* FIX GRID OVERFLOW TRIỆT ĐỂ */
-.account-load,
-.search-add,
-.recAva,
-.recAddAva {
-    min-height: 0;
 }
 
 /* =====================================================
@@ -106,18 +107,19 @@
 }
 
 /* =====================================================
-   RIGHT – AVATAR AREA (50 / 50)
+   RIGHT – AVATAR AREA
 ===================================================== */
 .search-add {
     height: 100%;
     display: grid;
-    grid-template-rows: 1fr 1fr; /* CHIA ĐỀU */
+    grid-template-rows: 1fr 1fr;
     gap: 16px;
 }
 
-/* ================= AVATAR GRID ================= */
+/* =====================================================
+   AVATAR GRID
+===================================================== */
 .recAva {
-    height: 100%;
     padding: 18px;
     border-radius: 22px;
 
@@ -135,19 +137,20 @@
     overflow-y: auto;
 }
 
-/* ================= AVATAR BUTTON ================= */
+/* =====================================================
+   AVATAR ITEM
+===================================================== */
 .btnRec {
     aspect-ratio: 1 / 1;
     border-radius: 16px;
 
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
 
     border: 2px solid rgba(0,255,255,.55);
     cursor: pointer;
 
-    transition: all .25s ease;
+    transition: .25s ease;
     box-shadow: 0 0 12px rgba(0,255,255,.35);
 }
 
@@ -165,9 +168,10 @@
         0 0 45px rgba(255,215,0,.45);
 }
 
-/* ================= ADD / SEARCH PANEL ================= */
+/* =====================================================
+   ADD / UPLOAD PANEL
+===================================================== */
 .recAddAva {
-    height: 100%;
     padding: 18px;
     border-radius: 22px;
 
@@ -179,75 +183,38 @@
         0 0 25px rgba(0,255,255,.2);
 
     color: #eaeaea;
-    overflow: hidden;
 }
 
 /* =====================================================
-   SCROLLBAR (GAME STYLE)
-===================================================== */
-.recAva::-webkit-scrollbar {
-    width: 6px;
-}
-
-.recAva::-webkit-scrollbar-thumb {
-    background: linear-gradient(#00ffff, #009999);
-    border-radius: 10px;
-}
-
-/* =====================================================
-   REC ADD AVATAR – UPLOAD FORM
+   UPLOAD FORM
 ===================================================== */
 .photo_upload {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     gap: 18px;
 }
 
-/* ================= UPLOAD PREVIEW ================= */
 .uploading {
+    min-height: 160px;
     flex: 1;
 
     border-radius: 18px;
     border: 2px dashed rgba(0,255,255,.45);
 
-    background:
-        linear-gradient(145deg, #0b0b0b, #050505);
+    background: linear-gradient(145deg, #0b0b0b, #050505);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     cursor: pointer;
-    position: relative;
-
-    box-shadow:
-        inset 0 0 18px rgba(0,255,255,.12),
-        0 0 18px rgba(0,255,255,.25);
-
     transition: .25s ease;
 }
 
-.uploading:hover {
-    border-color: var(--cyan);
-    box-shadow:
-        inset 0 0 25px rgba(0,255,255,.2),
-        0 0 30px rgba(0,255,255,.6);
-}
-
-/* ICON / LABEL */
 .uploading label {
     font-size: 48px;
     color: var(--cyan);
-    opacity: .85;
-    pointer-events: none;
-}
-
-/* WHEN IMAGE PREVIEW EXISTS */
-.uploading.has-image {
-    border-style: solid;
-    padding: 0;
 }
 
 .uploading.has-image label {
@@ -261,97 +228,198 @@
     border-radius: 16px;
 }
 
-/* ================= ACTION BUTTONS ================= */
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
 .accept {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
 }
 
-/* COMMON BUTTON */
 .accept button {
     height: 44px;
     border-radius: 999px;
-
     font-size: 15px;
     font-weight: 600;
-    letter-spacing: .5px;
-
     cursor: pointer;
-    transition: .25s ease;
 }
 
-/* APPLY */
 .saveBtn {
     background: linear-gradient(145deg, #ffd700, #ffb700);
     border: none;
     color: #000;
-
-    box-shadow:
-        0 0 18px rgba(255,215,0,.65),
-        inset 0 0 8px rgba(255,255,255,.35);
 }
 
-.saveBtn:hover {
-    transform: translateY(-2px);
-    box-shadow:
-        0 0 28px rgba(255,215,0,.95),
-        0 0 55px rgba(255,215,0,.45);
-}
-
-/* RESET */
 .resetBtn {
     background: linear-gradient(145deg, #111, #060606);
     border: 1.6px solid rgba(0,255,255,.55);
     color: var(--cyan);
-
-    box-shadow:
-        0 0 14px rgba(0,255,255,.25);
 }
-
-.resetBtn:hover {
-    background: linear-gradient(145deg, #0f0f0f, #080808);
-    box-shadow:
-        0 0 22px rgba(0,255,255,.65);
-}
-
-/* ================= DISABLED STATE ================= */
-.accept button:disabled {
-    opacity: .45;
-    cursor: not-allowed;
-    box-shadow: none;
-}
-
 
 /* =====================================================
-   RESPONSIVE
+   SCROLLBAR
+===================================================== */
+.recAva::-webkit-scrollbar {
+    width: 6px;
+}
+
+.recAva::-webkit-scrollbar-thumb {
+    background: linear-gradient(#00ffff, #009999);
+    border-radius: 10px;
+}
+
+/* =====================================================
+   RESPONSIVE – TABLET
 ===================================================== */
 @media (max-width: 1024px) {
     .account-load {
-        grid-template-columns: 220px 1fr;
+        grid-template-columns: 200px 1fr;
+        height: auto;
+        max-height: none;
+        overflow: visible;
     }
 
     .search-add {
-        grid-column: span 2;
+        grid-column: 1 / -1;
+        grid-template-rows: auto auto;
+    }
+
+    .recAva {
+        grid-template-columns: repeat(4, 1fr);
+        max-height: 360px;
+        overflow-y: auto;
     }
 }
 
-@media (max-width: 640px) {
+/* =====================================================
+   RESPONSIVE – MOBILE
+===================================================== */
+@media (max-width: 768px) {
     .account-load {
         grid-template-columns: 1fr;
-        gap: 22px;
-
+        padding: 20px;
         height: auto;
-        min-height: unset;
-        max-height: unset;
+        max-height: none;
+        overflow: visible;
     }
 
     .profile-image {
-        width: 160px;
-        height: 160px;
+        width: 170px;
+        height: 170px;
+        margin: 0 auto;
     }
 
+    .recAva {
+        grid-template-columns: repeat(2, 1fr);
+        max-height: 280px;
+        overflow-y: auto;
+    }
+
+    .accept {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =====================================================
+   MOBILE RESPONSIVE – FINAL FIX
+===================================================== */
+@media (max-width: 480px) {
+
+    /* ===== CONTAINER CHÍNH ===== */
+    .account-load {
+        width: 100%;
+        margin: 0;
+        padding: 16px;
+
+        grid-template-columns: 1fr;
+        gap: 16px;
+
+        height: auto;
+        max-height: none;
+
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        background: #000;
+
+        overflow: visible;
+    }
+
+    /* ===== PROFILE AVATAR ===== */
+    .profile-image {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 8px;
+    }
+
+    /* ===== ACCOUNT INFO ===== */
+    #loading-acc {
+        padding: 16px;
+        font-size: 14px;
+        line-height: 1.6;
+        text-align: left;
+    }
+
+    /* ===== RIGHT PANEL ===== */
     .search-add {
-        grid-template-rows: 1fr 1fr;
+        height: auto;
+        grid-template-rows: auto auto;
+        gap: 14px;
+    }
+
+    /* =================================================
+       AVATAR GRID – SCROLL CHUẨN MOBILE
+    ================================================= */
+    .recAva {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+
+        padding: 14px;
+        border-radius: 18px;
+
+        /* 👉 CHỈ CHO PHÉP CAO 2 HÀNG */
+        max-height: calc(
+            (100vw - 60px) / 2 * 2 + 12px
+        );
+
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .btnRec {
+        border-radius: 14px;
+    }
+
+    /* =================================================
+       UPLOAD AREA – LUÔN THẤY
+    ================================================= */
+    .recAddAva {
+        padding: 14px;
+        border-radius: 18px;
+
+        height: auto;
+        min-height: unset;
+
+        overflow: visible;
+    }
+
+    .photo_upload {
+        gap: 14px;
+    }
+
+    .uploading {
+        min-height: 140px;
+    }
+
+    /* ===== BUTTONS ===== */
+    .accept {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .accept button {
+        height: 46px;
+        font-size: 15px;
     }
 }

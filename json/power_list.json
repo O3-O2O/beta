@@ -1,0 +1,51 @@
+[
+
+    {
+        "id" : "power-inner-1",
+        "title" : "Power mutiple 1",
+        "cost" : 20000000,
+        "multi" : 4
+
+    },
+    {
+
+        "id" : "power-inner-2",
+        "title" : "Power mutiple 2",
+        "cost" : 2000000000,
+        "multi" : 10
+
+    },
+    {
+
+        "id" : "power-inner-3",
+        "title" : "Power mutiple 3",
+        "cost" : 100000000000,
+        "multi" : 15
+
+    },
+    {
+
+        "id" : "power-inner-4",
+        "title" : "Power mutiple 4",
+        "cost" : 1000000000000,
+        "multi" : 25
+
+    },
+    {
+
+        "id" : "power-inner-5",
+        "title" : "Power mutiple 5",
+        "cost" : 2500000000000000,
+        "multi" : 50
+
+    },
+    {
+
+        "id" : "power-inner-6",
+        "title" : "Power mutiple 6",
+        "cost" : 500000000000000000,
+        "multi" : 100
+
+    }
+
+]
