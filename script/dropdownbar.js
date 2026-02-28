@@ -1,3 +1,5 @@
+const userSession = JSON.parse(localStorage.getItem("user_session"));
+
 let autoCloseTimer = null;
 let isHoveringDropdown = false;
 
@@ -68,6 +70,64 @@ window.accountLog = () => {
     window.location.href = "main_acc.html"
 
 }
+
+window.discordPage = () => {
+
+    window.location.href = "https://discord.gg/G3FEGW39"
+
+}
+
+window.buyingPage = () => {
+
+    window.location.href = "rpg_store.html"
+
+}
+
+window.commentPage = async () => {
+    document.querySelector(".comment").classList.add("active");
+}
+
+document.querySelector(".closeComment").onclick = () => {
+    document.querySelector(".comment").classList.remove("active");
+}
+
+document.querySelector(".submitComment").onclick = async () => {
+    
+    
+    if(document.querySelector(".inputComment").value == ""){
+
+        alert("No report detected")
+
+    }else{
+
+        try{
+
+            const text = document.querySelector(".inputComment").value.trim()
+            await db.collection("comments")
+                .doc(userSession.uid)
+                .set({
+
+                    text: text,
+                    uid: userSession.uid,
+                    email: userSession.email,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+
+                })
+        } catch (err){
+
+            console.log(err)
+
+        }
+
+        document.querySelector(".inputComment").value = ""
+        alert("Succesfully send your report")
+        
+
+    }
+
+    document.querySelector(".comment").classList.remove("active");
+}
+
 
 window.logOut = async function () {
 

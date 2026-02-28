@@ -123,7 +123,7 @@ body {
     padding-left: 26px;
 }
 
-.size-inside li:last-child button:hover {
+.size-inside li:nth-child(4) button:hover {
     background: rgba(255, 94, 0, 0.15);
     color: red;
 }
@@ -135,6 +135,229 @@ body {
     border-radius: 20px;
     border: 2px solid #ffcc00;
     padding: 40px;
+}
+
+/* ================= COMMENT OVERLAY ================= */
+.comment {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    display: none; /* bật bằng JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+/* khi active */
+.comment.active {
+    display: flex;
+}
+
+/* ================= COMMENT BOX ================= */
+.comment::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0,255,255,0.1), transparent 60%);
+    pointer-events: none;
+}
+
+.comment {
+    flex-direction: column;
+}
+
+.comment-box {
+    width: 600px;
+    max-width: 95%;
+    background: linear-gradient(180deg, #1a1a1a, #0f0f0f);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow:
+        0 0 25px rgba(0,255,255,0.4),
+        inset 0 0 15px rgba(255,255,255,0.05);
+    border: 1px solid rgba(0,255,255,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: fadeInComment 0.25s ease;
+}
+
+/* animation */
+@keyframes fadeInComment {
+    from {
+        opacity: 0;
+        transform: translateY(-15px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ================= TEXTAREA ================= */
+.inputComment {
+    width: 100%;
+    height: 180px;
+    resize: none;
+    border-radius: 12px;
+    border: 2px solid rgba(0,255,255,0.4);
+    background: #0b0b0b;
+    color: #fff;
+    padding: 15px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.inputComment:focus {
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0,255,255,0.6);
+}
+
+/* ================= BUTTON ROW ================= */
+.comment-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+/* submit */
+.submitComment {
+    padding: 10px 22px;
+    border-radius: 10px;
+    border: 2px solid #00ffff;
+    background: linear-gradient(145deg, #00ffff, #00b3b3);
+    color: #003333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.submitComment:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0,255,255,0.7);
+}
+
+/* close */
+.closeComment {
+    padding: 10px 22px;
+    border-radius: 10px;
+    border: 2px solid #ff4d4d;
+    background: transparent;
+    color: #ff4d4d;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.closeComment:hover {
+    background: rgba(255,0,0,0.15);
+}
+
+/* ================= OVERLAY FADE ================= */
+.comment {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.comment.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ================= POPUP SCALE + FLOAT ================= */
+.comment-box {
+    transform: scale(0.85) translateY(-40px);
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(.2,.8,.2,1);
+}
+
+.comment.active .comment-box {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+/* ================= GLOW PULSE ================= */
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 20px rgba(0,255,255,0.3); }
+    50% { box-shadow: 0 0 35px rgba(0,255,255,0.7); }
+    100% { box-shadow: 0 0 20px rgba(0,255,255,0.3); }
+}
+
+.comment.active .comment-box {
+    animation: glowPulse 2.5s infinite ease-in-out;
+}
+
+/* ================= TEXTAREA FADE IN ================= */
+.inputComment {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+.comment.active .inputComment {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================= CLOSE BUTTON ROTATE ================= */
+.closeComment {
+    transition: all 0.3s ease;
+}
+
+.closeComment:hover {
+    transform: rotate(-8deg) scale(1.05);
+}
+
+/* ================= SUBMIT BUTTON PRESS EFFECT ================= */
+.submitComment {
+    position: relative;
+    overflow: hidden;
+}
+
+.submitComment::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.4);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.4s ease;
+}
+
+.submitComment:active::after {
+    width: 250%;
+    height: 250%;
+    opacity: 0;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+
+    .comment-box {
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .inputComment {
+        height: 150px;
+        font-size: 14px;
+    }
+
+    .comment-actions {
+        flex-direction: column;
+    }
+
+    .submitComment,
+    .closeComment {
+        width: 100%;
+    }
 }
 
 /* ================= RESPONSIVE ================= */

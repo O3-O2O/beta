@@ -107,6 +107,7 @@
     height:10%;
     gap:10%;
     padding:0;
+    backdrop-filter: blur(0px);
 
 }
 

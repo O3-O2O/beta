@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account</title>
+    <title>Rpg store</title>
     <link rel="stylesheet" href="../style/dropdownbar.css">
-    <link rel="stylesheet" href="../style/main_acc.css">
+    <link rel="stylesheet" href="../style/rpg_store.css">
 </head>
 <body>
 
@@ -73,38 +73,53 @@
             </div>
         </form>
 
-        <div id="account-load" class="account-load">
+        <div class="cartBuy">
 
-            <div id="profile" class="profile-image"> 
+            <input class="search-bar" id="search-bar" placeholder="Search...">
 
-            </div>
+            <div id="cart-container" class="cart-container">
 
-            <div id="loading-acc">
-                
-            </div>
+                <div class="cart-product">
 
-            <div class="search-add">
+                    <img class="product-profile" src="https://upload.wikimedia.org/wikipedia/vi/b/b7/Nyan_Cat_250px.png">
 
-                <div id="recAva" class="recAva">
-                
-                </div>
-                
-                <div class="recAddAva">
+                    <span class="product-name">Nyan cat</span>
 
-                    <form id="photo_upload" class="photo_upload">
-                        <div class="uploading" id="uploadPreview">
-                            <label>📸</label>
-                            <input type="file" id="image_uploading" hidden accept="image/*">
-                        </div>
-                        <div class="accept">
-                            <button type="submit" class="saveBtn">Use as avatar</button>
-                            <button type="reset" class="resetBtn">Decline</button>
-                        </div>
-                    </form>
+                    <span class="product-name">###$</span>
+
+                    <button onclick="notBuy()" class="buy-product">Purchase</button>
 
                 </div>
 
+                <div class="cart-product">
+
+                    <img class="product-profile" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhVsujDpTEjjAbKdjBq6VE0jlRm2vax2Ox5Q&s">
+
+                    <span class="product-name">Mario - star</span>
+
+                    <span class="product-name">###$</span>
+
+                    <button onclick="notBuy()" class="buy-product">Purchase</button>
+
+                </div>
+
+
+                <div class="cart-product">
+
+                    <img class="product-profile">
+
+                    <span class="product-name">Error</span>
+
+                    <span class="product-name">###$</span>
+
+                    <button onclick="notBuy()" class="buy-product">Purchase</button>
+
+                </div>
+
+
             </div>
+
+            <span class="close-sign"></span>
 
         </div>
 
@@ -126,7 +141,7 @@
     <!-- ===== GAME SCRIPT ===== -->
 
     <script src="../script/dropdownbar.js"></script>
-    <script src="../script/main_acc.js"></script>
+    <script src="../script/rpg_store.js"></script>
     
 
     <script>

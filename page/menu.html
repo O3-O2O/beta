@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Main page</title>
     <link rel="stylesheet" href="../style/dropdownbar.css">
     <link rel="stylesheet" href="../style/menu.css">
 </head>
@@ -19,9 +19,18 @@
 
         <nav class="navigator">
 
-            <div class="content-in">
+            <div class="content-in setting">
 
-                <button onclick="websiteInfo()" class="btn-size">Website information</button>
+                <button onclick="dropDown(this)" class="btn-size">Website information</button>
+
+                <div class="dropdown-wrap">
+                    <ul class="size-inside">
+
+                        <li><button onclick="websiteInfo()">Main page</button></li>
+                        <li><button onclick="buyingPage()">Rpg store</button></li>
+
+                    </ul>
+                </div>
 
             </div>
 
@@ -39,6 +48,8 @@
                     <ul class="size-inside">
 
                         <li><button onclick="accountLog()">Account</button></li>
+                        <li><button onclick="discordPage()">Discord</button></li>
+                        <li><button onclick="commentPage()">Comment</button></li>
                         <li><button onclick="logOut()">Log out</button></li>
 
                     </ul>
@@ -47,38 +58,264 @@
 
         </nav>
 
+        <form class="comment">
+            <div class="comment-box">
+
+                <textarea id="textReport" class="inputComment" placeholder="Write your comment here..."></textarea>
+
+                <div class="comment-actions">
+                    <button type="button" class="closeComment">Cancel</button>
+
+                    <button type="button" class="submitComment">Submit</button>
+                </div>
+
+            </div>
+        </form>
+
         <div class="information-about-rpg">
 
-            <div class="inside-inside-detail">
-                <h2>V0.00.01 Beta (Latest Ver.)</h2>
+            <section class="inside-inside-detail">
 
-                <div class="detail-grid">
-                    <div class="detail-title">Features</div>
-
-                    <div class="detail-item">
-                        Account available, freely choosing avatar from recommendation or storage
-                    </div>
-                    <div class="detail-item">
-                        Profile with full stats of game progress
-                    </div>
-
-                    <div class="detail-title">RPG Clicker – Functions</div>
-
-                    <div class="detail-item">Upgrade mechanism</div>
-                    <div class="detail-item">Shop to pay for further power</div>
-                    <div class="detail-item">Achievements for better experiment</div>
-                    <div class="detail-item">User status for showing game stats</div>
-                    <div class="detail-item">Achievement for better experience</div>
-                    <div class="detail-item">User status for showing game stats</div>
-                    <div class="detail-item">Able to change click place background</div>
-
-                    <div class="detail-title">Advantages</div>
-
-                    <div class="detail-item advantage">Better to relax</div>
-                    <div class="detail-item advantage">Suitable for wide range of age groups</div>
+                <!-- ===== VERSION ===== -->
+                <div class="version-badge">
+                    BETA VERSION
                 </div>
-            </div>
 
+                <h2>
+                    RPG Clicker – V0.00.01
+                </h2>
+
+                <div class="highlight-box">
+                    RPG Clicker is a browser-based incremental game focused on
+                    progression, upgrade mechanics, and relaxing gameplay.
+                    Built with HTML, CSS, JavaScript and Firebase integration.
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- ===== CORE FEATURES ===== -->
+                <div class="detail-title">
+                    Core Features
+                </div>
+
+                <div class="system-grid">
+
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            Account System
+                        </div>
+                        <div class="feature-desc">
+                            Secure login & logout using Firebase authentication.
+                            User session stored locally for smooth experience.
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            Upgrade Mechanism
+                        </div>
+                        <div class="feature-desc">
+                            Progressive click scaling system including
+                            additive (+) and multiplier (x) upgrades.
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            Shop System
+                        </div>
+                        <div class="feature-desc">
+                            Purchase power boosts and unlock new potential.
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            Achievement System
+                        </div>
+                        <div class="feature-desc">
+                            Track milestones and reward long-term players.
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            User Status Panel
+                        </div>
+                        <div class="feature-desc">
+                            Display real-time statistics and player progression.
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            Background Customization
+                            <span class="future-tag">
+                                Future Update
+                            </span>
+                        </div>
+                        <div class="feature-desc">
+                            Personalize the click area with selectable themes.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- ===== TECHNICAL SYSTEM ===== -->
+                <div class="detail-title">
+                    Technical Stack
+                </div>
+
+                <div class="system-grid">
+
+                    <div class="system-card">
+                        <div class="system-title">
+                            Frontend
+                        </div>
+                        <div class="system-value">
+                            HTML / CSS / JS
+                        </div>
+                    </div>
+
+                    <div class="system-card">
+                        <div class="system-title">
+                            Backend
+                        </div>
+                        <div class="system-value">
+                            Firebase Firestore
+                        </div>
+                    </div>
+
+                    <div class="system-card">
+                        <div class="system-title">
+                            Authentication
+                        </div>
+                        <div class="system-value">
+                            Firebase Auth
+                        </div>
+                    </div>
+
+                    <div class="system-card">
+                        <div class="system-title">
+                            Database
+                        </div>
+                        <div class="system-value">
+                            Cloud Firestore
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- ===== GAME PROGRESSION SYSTEM ===== -->
+                <div class="detail-title">
+                    Game Progression System
+                </div>
+
+                <div class="highlight-box">
+
+                    <div class="stat-bar">
+                        <div class="stat-label">
+                            Click Power Scaling
+                        </div>
+                        <div class="stat-progress">
+                            <div class="stat-progress-fill" style="width: 70%"></div>
+                        </div>
+                    </div>
+
+                    <div class="stat-bar">
+                        <div class="stat-label">
+                            Upgrade Depth
+                        </div>
+                        <div class="stat-progress">
+                            <div class="stat-progress-fill" style="width: 60%"></div>
+                        </div>
+                    </div>
+
+                    <div class="stat-bar">
+                        <div class="stat-label">
+                            Expansion Potential
+                        </div>
+                        <div class="stat-progress">
+                            <div class="stat-progress-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- ===== CHANGELOG ===== -->
+                <div class="detail-title">
+                    Changelog
+                </div>
+
+                <div class="changelog">
+
+                    <div class="changelog-item">
+                        <div class="changelog-version">
+                            V0.00.01
+                        </div>
+                        <div class="changelog-desc">
+                            Initial beta release with upgrade system, account system,
+                            shop mechanics, and achievements.
+                        </div>
+                    </div>
+
+                    <div class="changelog-item">
+                        <div class="changelog-version">
+                            Planned
+                        </div>
+                        <div class="changelog-desc">
+                            Prestige system, skill tree expansion,
+                            animated effects and leaderboard ranking.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- ===== ADVANTAGES ===== -->
+                <div class="detail-title">
+                    Advantages
+                </div>
+
+                <div class="system-grid">
+
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            Relaxing Gameplay
+                        </div>
+                        <div class="feature-desc">
+                            Simple mechanics but satisfying progression.
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            Lightweight
+                        </div>
+                        <div class="feature-desc">
+                            Runs directly in browser without heavy resources.
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-title">
+                            Scalable Design
+                        </div>
+                        <div class="feature-desc">
+                            Structured codebase allowing easy future expansion.
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
 
         </div>
 

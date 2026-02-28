@@ -1,61 +1,62 @@
-/* ==============================
-   ROOT / THEME (IMPROVED)
-================================ */
+/* =========================================
+   RESET
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at top, #0f1220, #05060a);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    color: #e8eaf0;
+}
+
+/* =========================================
+   THEME VARIABLES
+========================================= */
 :root {
     --neon: #4ffcff;
     --neon-soft: rgba(79, 252, 255, 0.35);
     --neon-glow: rgba(79, 252, 255, 0.7);
 
     --accent: #7c7cff;
-    --accent-soft: rgba(124, 124, 255, 0.35);
+    --danger: #ff3c5a;
 
-    --bg-dark: #06070b;
-    --bg-panel: rgba(14, 16, 22, 0.85);
-
+    --panel: rgba(14, 16, 22, 0.85);
     --border-soft: rgba(120, 200, 255, 0.25);
 
     --text-main: #e8eaf0;
     --text-muted: #a1a7b3;
 }
 
-h5 {
-    color: #e9fdff !important;
-    font-weight: 600;
-    letter-spacing: 0.4px;
-    text-shadow:
-        0 0 6px rgba(79, 252, 255, 0.35),
-        0 0 14px rgba(79, 252, 255, 0.25);
-}
-
-
-/* ==============================
-   GLOBAL
-================================ */
-body {
-    background:
-        radial-gradient(circle at top, #0f1220, #05060a);
-    color: var(--text-main);
-    font-family: "Segoe UI", system-ui, sans-serif;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-/* ==============================
-   SIDEBAR
-================================ */
-.sidebar {
-    background: linear-gradient(180deg, #070914, #0b0e1a);
+/* =========================================
+   LAYOUT
+========================================= */
+.page-wrapper {
+    display: flex;
     min-height: 100vh;
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(180deg, #070914, #0b0e1a);
     border-right: 1px solid var(--border-soft);
+    padding: 30px 0;
+}
+
+.sidebar .menu {
+    list-style: none;
 }
 
 .sidebar .menu li a {
     display: block;
-    padding: 12px 18px;
-    margin: 6px 12px;
+    padding: 12px 20px;
+    margin: 8px 16px;
     border-radius: 12px;
     color: var(--text-muted);
     transition: 0.25s;
@@ -67,128 +68,135 @@ a {
     box-shadow: 0 0 14px var(--neon-soft);
 }
 
-/* ==============================
-   CONTENT
-================================ */
+/* =========================================
+   CONTENT AREA
+========================================= */
 .content {
-    background: transparent;
+    flex: 1;
+    padding: 40px;
 }
 
-/* ==============================
+/* =========================================
    CARD / PANEL
-================================ */
+========================================= */
 .shadow-md {
     background: linear-gradient(
         180deg,
         rgba(18, 22, 34, 0.92),
         rgba(10, 12, 20, 0.85)
     );
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     border-radius: 20px;
     border: 1px solid var(--border-soft);
+    padding: 25px;
     box-shadow:
         0 0 30px rgba(0, 0, 0, 0.65),
         inset 0 0 22px rgba(79, 252, 255, 0.08);
 }
 
-
-/* ==============================
-   FORM
-================================ */
-.form-control {
-    background: #0b0e18;
-    border: 1px solid var(--border-soft);
-    color: var(--text-main);
-    border-radius: 12px;
+/* =========================================
+   HEADINGS
+========================================= */
+h5 {
+    color: #e9fdff;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0.4px;
+    text-shadow:
+        0 0 6px rgba(79, 252, 255, 0.35),
+        0 0 14px rgba(79, 252, 255, 0.25);
 }
 
-.form-control:focus {
-    background: #0b0e18;
-    border-color: var(--neon);
-    box-shadow: 0 0 12px var(--neon-soft);
-    color: var(--text-main);
+/* =========================================
+   FORM
+========================================= */
+.form-group {
+    margin-bottom: 15px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 label {
+    display: block;
+    margin-bottom: 6px;
     color: var(--text-muted);
 }
 
-/* ==============================
-   BUTTON
-================================ */
+.form-control {
+    width: 100%;
+    padding: 10px 14px;
+    background: #0b0e18;
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    color: var(--text-main);
+    transition: 0.2s;
+}
+
+.form-control:focus {
+    border-color: var(--neon);
+    box-shadow: 0 0 12px var(--neon-soft);
+    outline: none;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+.btn {
+    padding: 10px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
 .btn-primary {
     background: linear-gradient(135deg, var(--neon), var(--accent));
-    border: none;
     color: #05060a;
-    font-weight: 600;
-    border-radius: 12px;
     box-shadow: 0 0 18px var(--neon-soft);
 }
 
 .btn-primary:hover {
     box-shadow:
         0 0 30px var(--neon-glow),
-        0 0 12px var(--accent-soft);
+        0 0 12px rgba(124,124,255,0.5);
+    transform: translateY(-2px);
 }
 
 .btn-grey {
-    background: linear-gradient(
-        135deg,
-        rgba(120, 130, 150, 0.12),
-        rgba(80, 90, 110, 0.18)
-    );
-    border: 1px solid rgba(160, 180, 200, 0.35);
-    color: #c9d3e0 !important;
-    font-weight: 500;
-    border-radius: 12px;
-    padding: 8px 18px;
-    transition: 0.25s ease;
-    box-shadow:
-        inset 0 0 12px rgba(255, 255, 255, 0.04),
-        0 0 10px rgba(0, 0, 0, 0.45);
+    background: rgba(120,130,150,0.15);
+    border: 1px solid rgba(160,180,200,0.35);
+    color: #c9d3e0;
 }
 
 .btn-grey:hover {
-    color: #ffffff;
     border-color: var(--neon);
-    box-shadow:
-        0 0 14px rgba(79, 252, 255, 0.35),
-        inset 0 0 10px rgba(79, 252, 255, 0.08);
-    transform: translateY(-1px);
+    box-shadow: 0 0 14px var(--neon-soft);
 }
 
-.btn-grey:active {
-    transform: scale(0.97);
-    box-shadow:
-        inset 0 0 18px rgba(0, 0, 0, 0.6);
-}
-
-
-/* ==============================
-   PRODUCT TABLE
-================================ */
+/* =========================================
+   TABLE
+========================================= */
 .product-table {
     overflow-x: auto;
 }
 
 .product-table table {
-    background: transparent !important;
-    color: var(--text-main);
+    width: 100%;
     border-collapse: separate;
     border-spacing: 0 14px;
 }
 
 .product-table thead th {
-    background: transparent !important;
     color: var(--neon);
-    border: none;
-    text-align: center;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 10px;
 }
 
 .product-table tbody tr {
-    background: rgba(10, 12, 20, 0.8) !important;
+    background: rgba(10, 12, 20, 0.8);
     border-radius: 16px;
     box-shadow: inset 0 0 0 1px var(--border-soft);
     transition: 0.25s;
@@ -201,81 +209,191 @@ label {
 }
 
 .product-table td {
-    background: transparent !important;
-    border: none;
-    vertical-align: middle;
-    text-align: center;
     padding: 16px;
+    text-align: center;
 }
 
-/* ==============================
+/* =========================================
    PRODUCT IMAGE
-================================ */
-.product-table img,
-.product-item img {
-    width: 78px;
-    height: 78px;
+========================================= */
+.product-table img {
+    width: 90px;
+    height: 90px;
     object-fit: cover;
     border-radius: 16px;
-    border: 2px solid transparent;
     transition: 0.25s;
-    cursor: pointer;
 }
 
 .product-table img:hover {
-    border-color: var(--neon);
+    border: 2px solid var(--neon);
     box-shadow: 0 0 20px var(--neon-soft);
     transform: scale(1.08);
 }
 
-/* ==============================
-   DELETE BUTTON
-================================ */
-.product-table .btn-danger {
-    background: rgba(255, 60, 90, 0.15) !important;
-    border: 1px solid rgba(255, 60, 90, 0.6);
-    box-shadow: 0 0 14px rgba(255, 60, 90, 0.35);
-    border-radius: 10px;
+.row.p-4 {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
 }
 
-.product-table .btn-danger:hover {
-    background: rgba(255, 60, 90, 0.3) !important;
-    box-shadow: 0 0 26px rgba(255, 60, 90, 0.7);
+/* Form bên trái */
+.row.p-4 > div:first-child {
+    flex: 0 0 35%;
 }
 
-/* ==============================
+/* Danh sách bên phải */
+.row.p-4 > div:last-child {
+    flex: 0 0 65%;
+}
+
+/* Scroll chỉ trong table */
+.product-table {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* =========================================
    RESPONSIVE
-================================ */
+========================================= */
+
+/* Tablet */
 @media (max-width: 992px) {
+    .page-wrapper {
+        flex-direction: column;
+    }
+
     .sidebar {
+        width: 100%;
         min-height: auto;
-    }
-
-    .page-content {
-        margin-top: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        display: none;
+        display: flex;
+        justify-content: center;
     }
 
     .content {
-        width: 100%;
-    }
-
-    .product-table table {
-        min-width: 360px;
+        padding: 20px;
     }
 }
 
-@media (max-width: 576px) {
+/* Mobile */
+@media (max-width: 768px) {
+
+    .shadow-md {
+        padding: 18px;
+    }
+
+    .product-table table {
+        min-width: 400px;
+    }
+
     h5 {
         font-size: 1rem;
     }
 
-    .shadow-md {
-        padding: 16px !important;
+    .btn {
+        width: 100%;
+        margin-top: 8px;
     }
+}
+
+/* Style toàn bộ input */
+input[type="file"] {
+    background: #0b0e18;
+    color: var(--text-muted);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover toàn bộ */
+input[type="file"]:hover {
+    border-color: var(--neon);
+    box-shadow: 0 0 15px var(--neon-soft);
+}
+
+/* Style riêng nút chọn tệp */
+input[type="file"]::file-selector-button {
+    background: linear-gradient(135deg, var(--neon), var(--accent));
+    border: none;
+    padding: 8px 16px;
+    margin-right: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #05060a;
+    transition: 0.25s;
+}
+
+/* Hover nút */
+input[type="file"]::file-selector-button:hover {
+    box-shadow: 0 0 20px var(--neon-glow);
+    transform: translateY(-2px);
+}
+
+/* ====== BUY SECTION STYLE ====== */
+/* #product_name,
+#product_price {
+    display: inline-block;
+    width: 130px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+#input_product,
+#input_price {
+    display: inline-block;
+    width: calc(100% - 150px);
+    margin-bottom: 12px;
+}
+
+#input_product input,
+#input_price input {
+    width: 100%;
+    padding: 10px 14px;
+    background: #0b0e18;
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    color: var(--text-main);
+    transition: 0.3s;
+}
+
+#input_product input:focus,
+#input_price input:focus {
+    border-color: var(--neon);
+    box-shadow: 0 0 12px var(--neon-soft);
+    outline: none;
+}
+
+#input_product input:hover,
+#input_price input:hover {
+    border-color: var(--neon);
+} */
+
+/* =========================
+   CUSTOM SCROLLBAR
+========================= */
+
+.product-table::-webkit-scrollbar {
+    width: 8px;
+}
+
+.product-table::-webkit-scrollbar-track {
+    background: rgba(10, 12, 20, 0.6);
+    border-radius: 10px;
+}
+
+.product-table::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        var(--neon),
+        var(--accent)
+    );
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--neon-soft);
+}
+
+.product-table::-webkit-scrollbar-thumb:hover {
+    background: var(--neon);
 }

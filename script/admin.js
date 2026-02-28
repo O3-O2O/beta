@@ -84,7 +84,7 @@ function loadProducts() {
 
 // Xóa sản phẩm
 function deleteProduct(productId) {
-  if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
+  if (confirm("Are you sure to delete this image?")) {
     db.collection("products")
       .doc(productId)
       .delete()
